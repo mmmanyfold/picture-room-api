@@ -1,0 +1,7 @@
+version: 0.0.1
+connStr: "postgres://postgres:postgres@picture-room-postgres:5432/picture-room?sslmode=disable"
+
+bigCommerce:
+  store: store
+  client: client
+  token: token

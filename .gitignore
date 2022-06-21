@@ -1,0 +1,6 @@
+vendor
+pg-data
+pg-data-test
+config/prod.yaml
+config/dev.yaml
+.vscode

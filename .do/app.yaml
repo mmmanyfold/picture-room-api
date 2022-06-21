@@ -1,0 +1,14 @@
+name: picture-room-api
+services:
+  - name: picture-room-api
+    envs:
+      - key: ENV
+        scope: BUILD_TIME
+        value: prod
+      - key: ENV
+        scope: RUN_TIME
+        value: prod
+    github:
+      branch: master
+      deploy_on_push: true
+      repo: mmmanyfold/picture-room-api

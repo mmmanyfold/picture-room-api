@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+  postgres:
+    container_name: "picture-room-postgres"
+    networks:
+      - picture-room
+    image: postgres:12
+    restart: always
+    environment:
+      POSTGRES_DB: picture-room
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432:5432
+    command: postgres -c 'max_connections=500'
+    volumes:
+      - ./pg-data:/var/lib/postgresql/data
+  api:
+    container_name: "picture-room-api"
+    networks:
+      - picture-room
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - 4000:4000
+    depends_on:
+      - postgres
+    environment:
+      PORT: 4000
+      ENV: dev
+
+volumes:
+  pg-data:
+
+networks:
+  picture-room:
